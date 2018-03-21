@@ -3,11 +3,11 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
+title: VinceLou's Blog
 subtitle:
 description:
-author: John Doe
-language:
+author: Vince Lou
+language: zh-Hans
 timezone:
 
 # URL
@@ -72,7 +72,9 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+# theme: landscape
+theme: next
+# theme: pure
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
@@ -80,4 +82,3 @@ deploy:
   type: git
   repository: https://github.com/vincelou/vincelou.github.io.git
   branch: master
-
