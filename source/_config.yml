@@ -7,8 +7,9 @@ title: VinceLou's Blog
 subtitle:
 description: 骚年，你会写Bug吗
 author: Vince Lou
-language: zh-Hans
+# language: zh-Hans
 # language: zh-cn # anatole
+language: zh-CN # minos
 timezone:
 
 # URL
@@ -74,8 +75,9 @@ pagination_dir: page
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 # theme: landscape
-theme: next
-# theme: pure
+# theme: next
+theme: pure
+# theme: minos
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html

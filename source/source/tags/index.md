@@ -3,4 +3,5 @@ title: tags
 date: 2018-03-21 15:37:01
 type: "tags"
 comments: false
+layout: tags
 ---
