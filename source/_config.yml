@@ -5,7 +5,7 @@
 # Site
 title: VinceLou's Blog
 subtitle:
-description:
+description: 骚年，你会写Bug吗
 author: Vince Lou
 language: zh-Hans
 timezone:
@@ -54,7 +54,7 @@ index_generator:
   
 # Category & Tag
 default_category: uncategorized
-category_map:
+category_map: 
 tag_map:
 
 # Date / Time format
@@ -72,8 +72,8 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
-# theme: next
+# theme: landscape
+theme: next
 # theme: pure
 
 # Deployment
@@ -82,3 +82,10 @@ deploy:
   type: git
   repository: https://github.com/vincelou/vincelou.github.io.git
   branch: master
+
+# search 搜索
+search:
+  path: search.xml
+  field: post
+  format: html
+  limit: 10000
