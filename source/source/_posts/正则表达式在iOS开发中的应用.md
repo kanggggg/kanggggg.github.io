@@ -6,6 +6,7 @@ tags:
 categories:
   - iOS
 toc: true
+comments: true
 ---
 
 在代码开发过程中，我们经常需要用来校验邮箱、手机号等等，这个时候就需要用到正则表达式。在iOS开发中，能用来做正则校验的有两个 `NSPredicate` 和 `NSRegularExpression` 。

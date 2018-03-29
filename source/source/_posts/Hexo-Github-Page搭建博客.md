@@ -6,6 +6,7 @@ tags:
 categories:
   - hexo
 toc: true
+comments: true
 ---
 
 作为一个程序员时常需要写点文章总结自己的收获，对新技术的了解等等，所以没有自己的博客是说不过去的一件事情。搭建博客的渠道也有很多，也完全可以借助一些技术社区，这里我用的是自己搭建Hexo博客，部署在GitHub Pages上，使用GitHub Pages完全不必担心我们没有服务器没有域名这件事。
