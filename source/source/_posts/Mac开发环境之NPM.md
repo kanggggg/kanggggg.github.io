@@ -1,8 +1,8 @@
 ---
-title: Mac开发环境搭建之NPM
+title: Mac开发环境之NPM
 date: 2018-04-13 15:45:04
 tags: 
-- Mac
+- Mac开发环境
 categories:
 - Mac
 toc: true

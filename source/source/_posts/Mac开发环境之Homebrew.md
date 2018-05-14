@@ -1,8 +1,8 @@
 ---
-title: Mac开发环境搭建之Homebrew
+title: Mac开发环境之Homebrew
 date: 2018-04-13 15:42:00
 tags: 
-- Mac
+- Mac开发环境
 categories:
 - Mac
 toc: true

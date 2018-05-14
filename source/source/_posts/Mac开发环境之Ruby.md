@@ -1,8 +1,8 @@
 ---
-title: Mac开发环境搭建之Ruby
+title: Mac开发环境之Ruby
 date: 2018-04-13 15:45:21
 tags: 
-- Mac
+- Mac开发环境
 categories:
 - Mac
 toc: true
