@@ -23,7 +23,7 @@ comments: true
 
 #pragma mark - NSPredicate
 
-- (BOOL)vl_matchedByPrdicateToRegEx:(NSString *)regEx;
+- (BOOL)vf_matchedByPrdicateToRegEx:(NSString *)regEx;
 
 @end
 
@@ -34,7 +34,7 @@ comments: true
 
 #pragma mark - NSPredicate
 
-- (BOOL)vl_matchedByPrdicateToRegEx:(NSString *)regEx{
+- (BOOL)vf_matchedByPrdicateToRegEx:(NSString *)regEx{
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regEx];
     return [predicate evaluateWithObject:self];
 }
@@ -55,16 +55,16 @@ comments: true
 #pragma mark - NSRegularExpression
 
 //校验是否匹配
-- (BOOL)vl_matchedToRegEx:(NSString *)regEx;
+- (BOOL)vf_matchedToRegEx:(NSString *)regEx;
 
 //匹配到的第一个字符串
-- (NSString *)vl_firstMatchToRegEx:(NSString *)regEx;
+- (NSString *)vf_firstMatchToRegEx:(NSString *)regEx;
 
 //所有匹配的字符串
-- (NSArray *)vl_matchesToRegEx:(NSString *)regEx;
+- (NSArray *)vf_matchesToRegEx:(NSString *)regEx;
 
 //替换匹配到的字符串
-- (NSString *)vl_stringByReplaceMatchesToRegEx:(NSString *)regEx replaceString:(NSString *)replaceString;
+- (NSString *)vf_stringByReplacingMatchesToRegEx:(NSString *)regEx replacingString:(NSString *)replacingString;
 
 @end
 
@@ -76,7 +76,7 @@ comments: true
 #pragma mark - NSRegualrExpression
 
 //校验是否匹配
-- (BOOL)vl_matchedToRegEx:(NSString *)regEx{
+- (BOOL)vf_matchedToRegEx:(NSString *)regEx{
     
     NSError *error;
     NSRegularExpression *regularExpression = [NSRegularExpression regularExpressionWithPattern:regEx options:NSRegularExpressionCaseInsensitive error:&error];
@@ -86,7 +86,7 @@ comments: true
 }
 
 //匹配到的第一个字符串
-- (NSString *)vl_firstMatchToRegEx:(NSString *)regEx{
+- (NSString *)vf_firstMatchToRegEx:(NSString *)regEx{
     NSError *error;
     NSRegularExpression *regularExpression = [NSRegularExpression regularExpressionWithPattern:regEx options:NSRegularExpressionCaseInsensitive error:&error];
     NSTextCheckingResult *firstMatch = [regularExpression firstMatchInString:self options:0 range:NSMakeRange(0, self.length)];
@@ -98,7 +98,7 @@ comments: true
 }
 
 //所有匹配的字符串
-- (NSArray *)vl_matchesToRegEx:(NSString *)regEx{
+- (NSArray *)vf_matchesToRegEx:(NSString *)regEx{
     NSError *error;
     NSRegularExpression *regularExpression = [NSRegularExpression regularExpressionWithPattern:regEx options:NSRegularExpressionCaseInsensitive error:&error];
     
@@ -116,11 +116,11 @@ comments: true
 }
 
 //替换匹配到的字符串
-- (NSString *)vl_stringByReplaceMatchesToRegEx:(NSString *)regEx replaceString:(NSString *)replaceString{
+- (NSString *)vf_stringByReplacingMatchesToRegEx:(NSString *)regEx replacingString:(NSString *)replacingString{
     NSError *error;
     NSRegularExpression *regularExpression = [NSRegularExpression regularExpressionWithPattern:regEx options:NSRegularExpressionCaseInsensitive error:&error];
 
-    return [regularExpression stringByReplacingMatchesInString:self options:0 range:NSMakeRange(0, self.length) withTemplate:replaceString];
+    return [regularExpression stringByReplacingMatchesInString:self options:0 range:NSMakeRange(0, self.length) withTemplate:replacingString];
 }
 
 @end
