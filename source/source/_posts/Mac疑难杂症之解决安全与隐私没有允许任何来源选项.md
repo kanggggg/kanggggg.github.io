@@ -2,9 +2,9 @@
 title: Mac疑难杂症之解决安全与隐私没有允许任何来源选项
 date: 2018-05-14 11:37:10
 tags: 
-- Mac疑难症状
+  - Mac疑难症状
 categories:
-- Mac
+  - Mac
 toc: true
 comments: true
 ---

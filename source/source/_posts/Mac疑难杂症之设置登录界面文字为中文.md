@@ -2,9 +2,9 @@
 title: Mac疑难杂症之设置登录界面文字为中文
 date: 2018-05-14 11:24:30
 tags: 
-- Mac疑难症状
+  - Mac疑难症状
 categories:
-- Mac
+  - Mac
 toc: true
 comments: true
 ---

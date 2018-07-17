@@ -2,9 +2,9 @@
 title: Mac开发环境之Ruby
 date: 2018-04-13 15:45:21
 tags: 
-- Mac开发环境
+  - Mac开发环境
 categories:
-- Mac
+  - Mac
 toc: true
 comments: true
 ---

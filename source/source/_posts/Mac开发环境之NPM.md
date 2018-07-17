@@ -2,9 +2,9 @@
 title: Mac开发环境之NPM
 date: 2018-04-13 15:45:04
 tags: 
-- Mac开发环境
+  - Mac开发环境
 categories:
-- Mac
+  - Mac
 toc: true
 comments: true
 ---
