@@ -15,22 +15,26 @@ comments: true
 
 `NSPredicate` 能用来简单做正则校验，但是它的问题是存在校验不出来的情况。
 
+**NSString+VFRegEx.h**
+
 ``` objectivec
-//NSString+RegEx.h
 #import <Foundation/Foundation.h>
 
-@interface NSString (RegEx)
+@interface NSString (VFRegEx)
 
 #pragma mark - NSPredicate
 
 - (BOOL)vf_matchedByPrdicateToRegEx:(NSString *)regEx;
 
 @end
+```
 
-//NSString+RegEx.m
-#import "NSString+RegEx.h"
+**NSString+VFRegEx.m**
 
-@implementation NSString (RegEx)
+```objectivec
+#import "NSString+VFRegEx.h"
+
+@implementation NSString (VFRegEx)
 
 #pragma mark - NSPredicate
 
@@ -46,11 +50,12 @@ comments: true
 
 `NSRegularExpression` 相对于 `NSPredicate` 功能就强大的多了，这也是iOS正则校验的正统路子。
 
+**NSString+VFRegEx.h**
+
 ``` objectivec
-//NSString+RegEx.h
 #import <Foundation/Foundation.h>
 
-@interface NSString (RegEx)
+@interface NSString (VFRegEx)
 
 #pragma mark - NSRegularExpression
 
@@ -67,11 +72,14 @@ comments: true
 - (NSString *)vf_stringByReplacingMatchesToRegEx:(NSString *)regEx replacingString:(NSString *)replacingString;
 
 @end
+```
 
-//NSString+RegEx.m
-#import "NSString+RegEx.h"
+**NSString+VFRegEx.m**
 
-@implementation NSString (RegEx)
+```objectivec
+#import "NSString+VFRegEx.h"
+
+@implementation NSString (VFRegEx)
 
 #pragma mark - NSRegualrExpression
 
@@ -125,4 +133,3 @@ comments: true
 
 @end
 ```
-
