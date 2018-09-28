@@ -16,30 +16,30 @@ comments: true
 
 `NSPredicate` 能用来简单做正则校验，但是它的问题是存在校验不出来的情况。
 
-**NSString+VFRegEx.h**
+**NSString+VURegEx.h**
 
 ``` objectivec
 #import <Foundation/Foundation.h>
 
-@interface NSString (VFRegEx)
+@interface NSString (VURegEx)
 
 #pragma mark - NSPredicate
 
-- (BOOL)vf_matchedByPrdicateToRegEx:(NSString *)regEx;
+- (BOOL)vu_matchedByPrdicateToRegEx:(NSString *)regEx;
 
 @end
 ```
 
-**NSString+VFRegEx.m**
+**NSString+VURegEx.m**
 
 ```objectivec
-#import "NSString+VFRegEx.h"
+#import "NSString+VURegEx.h"
 
-@implementation NSString (VFRegEx)
+@implementation NSString (VURegEx)
 
 #pragma mark - NSPredicate
 
-- (BOOL)vf_matchedByPrdicateToRegEx:(NSString *)regEx{
+- (BOOL)vu_matchedByPrdicateToRegEx:(NSString *)regEx{
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regEx];
     return [predicate evaluateWithObject:self];
 }
@@ -51,41 +51,41 @@ comments: true
 
 `NSRegularExpression` 相对于 `NSPredicate` 功能就强大的多了，这也是iOS正则校验的正统路子。
 
-**NSString+VFRegEx.h**
+**NSString+VURegEx.h**
 
 ``` objectivec
 #import <Foundation/Foundation.h>
 
-@interface NSString (VFRegEx)
+@interface NSString (VURegEx)
 
 #pragma mark - NSRegularExpression
 
 //校验是否匹配
-- (BOOL)vf_matchedToRegEx:(NSString *)regEx;
+- (BOOL)vu_matchedToRegEx:(NSString *)regEx;
 
 //匹配到的第一个字符串
-- (NSString *)vf_firstMatchToRegEx:(NSString *)regEx;
+- (NSString *)vu_firstMatchToRegEx:(NSString *)regEx;
 
 //所有匹配的字符串
-- (NSArray *)vf_matchesToRegEx:(NSString *)regEx;
+- (NSArray *)vu_matchesToRegEx:(NSString *)regEx;
 
 //替换匹配到的字符串
-- (NSString *)vf_stringByReplacingMatchesToRegEx:(NSString *)regEx replacingString:(NSString *)replacingString;
+- (NSString *)vu_stringByReplacingMatchesToRegEx:(NSString *)regEx replacingString:(NSString *)replacingString;
 
 @end
 ```
 
-**NSString+VFRegEx.m**
+**NSString+VURegEx.m**
 
 ```objectivec
-#import "NSString+VFRegEx.h"
+#import "NSString+VURegEx.h"
 
-@implementation NSString (VFRegEx)
+@implementation NSString (VURegEx)
 
 #pragma mark - NSRegualrExpression
 
 //校验是否匹配
-- (BOOL)vf_matchedToRegEx:(NSString *)regEx{
+- (BOOL)vu_matchedToRegEx:(NSString *)regEx{
     
     NSError *error;
     NSRegularExpression *regularExpression = [NSRegularExpression regularExpressionWithPattern:regEx options:NSRegularExpressionCaseInsensitive error:&error];
@@ -95,7 +95,7 @@ comments: true
 }
 
 //匹配到的第一个字符串
-- (NSString *)vf_firstMatchToRegEx:(NSString *)regEx{
+- (NSString *)vu_firstMatchToRegEx:(NSString *)regEx{
     NSError *error;
     NSRegularExpression *regularExpression = [NSRegularExpression regularExpressionWithPattern:regEx options:NSRegularExpressionCaseInsensitive error:&error];
     NSTextCheckingResult *firstMatch = [regularExpression firstMatchInString:self options:0 range:NSMakeRange(0, self.length)];
@@ -107,7 +107,7 @@ comments: true
 }
 
 //所有匹配的字符串
-- (NSArray *)vf_matchesToRegEx:(NSString *)regEx{
+- (NSArray *)vu_matchesToRegEx:(NSString *)regEx{
     NSError *error;
     NSRegularExpression *regularExpression = [NSRegularExpression regularExpressionWithPattern:regEx options:NSRegularExpressionCaseInsensitive error:&error];
     
@@ -125,7 +125,7 @@ comments: true
 }
 
 //替换匹配到的字符串
-- (NSString *)vf_stringByReplacingMatchesToRegEx:(NSString *)regEx replacingString:(NSString *)replacingString{
+- (NSString *)vu_stringByReplacingMatchesToRegEx:(NSString *)regEx replacingString:(NSString *)replacingString{
     NSError *error;
     NSRegularExpression *regularExpression = [NSRegularExpression regularExpressionWithPattern:regEx options:NSRegularExpressionCaseInsensitive error:&error];
 
