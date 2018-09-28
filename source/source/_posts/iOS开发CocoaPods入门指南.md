@@ -10,8 +10,6 @@ toc: true
 comments: true
 ---
 
-[TOC]
-
 > WHAT IS COCOAPODS
 > CocoaPods is a dependency manager for Swift and Objective-C Cocoa projects. It has over 52 thousand libraries and is used in over 3 million apps. CocoaPods can help you scale your projects elegantly.
 
