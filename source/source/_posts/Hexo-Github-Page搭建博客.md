@@ -103,6 +103,42 @@ $ hexo new <title>
 
 文章的默认存储在 **/source/_posts** 下，新建完成之后，就可以去编辑文档了。 
 
+### 新建tags页面
+
+```bash
+$ cd your-hexo-site
+$ hexo new page tags
+```
+
+这样会在 `source` 目录下，新建 `tags` 目录，并在目录下生成 `index.md` 文档。然后修改这个 `index.md`：
+
+```
+---
+title: tags
+date: 2018-03-21 15:41:37
+type: "tags"
+comments: false
+---
+```
+
+### 新建categories页面
+
+```bash
+$ cd your-hexo-site
+$ hexo new page categories
+```
+
+这样会在 `source` 目录下，新建 `categories` 目录，并在目录下生成 `index.md` 文档。然后修改这个 `index.md`：
+
+```
+---
+title: categories
+date: 2018-03-21 15:41:37
+type: "categories"
+comments: false
+---
+```
+
 ### 主题
 
 Hexo是有很多第三方主题可供使用，[hexo themes](https://hexo.io/themes/) 官方收集了一些主题。我安利一下下面这两个：
