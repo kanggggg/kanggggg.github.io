@@ -3,10 +3,10 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: VinceLou's Blog
+title: Kang's Blog
 subtitle:
 description: 骚年，你会写Bug吗
-author: Vince Lou
+author: Kang
 # language: zh-Hans
 # language: zh-cn # anatole
 language: zh-CN # minos
@@ -14,7 +14,7 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://vincelou.github.io
+url: https://kanggggg.github.io
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -25,7 +25,6 @@ public_dir: public
 tag_dir: tags
 archive_dir: archives
 category_dir: categories
-about_dir: about
 code_dir: downloads/code
 i18n_dir: :lang
 skip_render:
@@ -57,7 +56,7 @@ index_generator:
   
 # Category & Tag
 default_category: uncategorized
-category_map: 
+category_map:
 tag_map:
 
 # Date / Time format
@@ -75,16 +74,13 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-# theme: landscape
-# theme: next
 theme: pure
-# theme: minos
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repository: https://github.com/vincelou/vincelou.github.io.git
+  repository: git@github.com:kanggggg/kanggggg.github.io.git
   branch: master
 
 # search 搜索
@@ -93,5 +89,3 @@ search:
   field: post
   format: html
   limit: 10000
-
-  
