@@ -31,7 +31,7 @@ site:
     width: 40
     height: 40
     url: ../uploads/avatar.jpg
-  title: Hexo # 页面title
+  title: Kang's Blog # 页面title
   favicon: /uploads/avatar.jpg
   board: <p>Bug生产者时刻不停</p> # 站点公告
   copyright: true # 底部版权信息
