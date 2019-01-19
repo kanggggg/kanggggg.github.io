@@ -3,7 +3,6 @@ title: iOS由Hex创建UIColor
 date: 2018-07-17 19:58:01
 tags: 
   - iOS Memo
-  - 代码段
 categories:
   - iOS
   - UIColor
@@ -11,38 +10,54 @@ toc: true
 comments: true
 ---
 
-**UIColor+VUHex.h**
+**UIColor+Hex.h**
 
 ```objectivec
 #import <UIKit/UIKit.h>
 
-@interface UIColor (VUHex)
+@interface UIColor (Hex)
 
 #pragma mark - 构造
 
 /**
  由Hex创建UIColor
  */
-+ (UIColor *)vu_colorWithHex:(NSInteger)hex alpha:(CGFloat)alpha;
-+ (UIColor *)vu_colorWithHexString:(NSString *)hexString alpha:(CGFloat)alpha;
++ (UIColor *)colorWithHex:(NSInteger)hex alpha:(CGFloat)alpha;
++ (UIColor *)colorWithHexString:(NSString *)hexString alpha:(CGFloat)alpha;
 
 @end
+
+static inline UIColor *ColorWithHex(NSInteger hex) {
+    return [UIColor colorWithHex:hex alpha:1.0];
+}
+
+static inline UIColor *ColorWithHexAndAlpha(NSInteger hex, CGFloat alpha) {
+    return [UIColor colorWithHex:hex alpha:alpha];
+}
+
+static inline UIColor *ColorWithHexString(NSString *hexString) {
+    return [UIColor colorWithHexString:hexString alpha:1.0];
+}
+
+static inline UIColor *ColorWithHexAndAlpha(NSString *hexString, CGFloat alpha) {
+    return [UIColor colorWithHexString:hexString alpha:alpha];
+}
 ```
 
-**UIColor+VUHex.m**
+**UIColor+Hex.m**
 
 ```objectivec
-#import "UIColor+VUHex.h"
+#import "UIColor+Hex.h"
 
-@implementation UIColor (VUHex)
+@implementation UIColor (Hex)
 
 #pragma mark - 构造
 
-+ (UIColor *)vu_colorWithHex:(NSInteger)hex alpha:(CGFloat)alpha {
++ (UIColor *)colorWithHex:(NSInteger)hex alpha:(CGFloat)alpha {
     return [UIColor colorWithRed:((float)((hex & 0xFF0000) >> 16))/255.0 green:((float)((hex & 0xFF00) >> 8))/255.0 blue:((float)(hex & 0xFF))/255.0 alpha:alpha];
 }
 
-+ (UIColor *)vu_colorWithHexString:(NSString *)hexString alpha:(CGFloat)alpha {
++ (UIColor *)colorWithHexString:(NSString *)hexString alpha:(CGFloat)alpha {
     NSString *cString = [[hexString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];
 
     if ([cString length] < 6) {
