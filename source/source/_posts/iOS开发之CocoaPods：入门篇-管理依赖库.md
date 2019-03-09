@@ -2,7 +2,8 @@
 title: iOS开发之CocoaPods：入门篇 管理依赖库
 date: 2019-01-25 16:58:53
 tags:
-  - iOS Memo
+  - iOS
+  - CocoaPods
 categories:
   - iOS
   - CocoaPods

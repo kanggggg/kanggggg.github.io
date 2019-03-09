@@ -2,9 +2,9 @@
 title: Hello World
 date: 2018-03-27 17:16:02
 tags:
-  - hexo
+  - Hexo
 categories:
-  - hexo
+  - Hexo
 toc: true
 commentscd : true
 ---

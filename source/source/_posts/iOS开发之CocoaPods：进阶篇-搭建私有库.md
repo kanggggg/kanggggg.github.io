@@ -2,7 +2,8 @@
 title: iOS开发之CocoaPods：进阶篇 搭建私有库
 date: 2019-01-25 18:02:16
 tags:
-  - iOS Memo
+  - iOS
+  - CocoaPods
 categories:
   - iOS
   - CocoaPods

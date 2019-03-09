@@ -2,9 +2,9 @@
 title: Hexo+Github Page搭建博客记录
 date: 2018-03-28 17:16:02
 tags:
-  - hexo
+  - Hexo
 categories:
-  - hexo
+  - Hexo
 toc: true
 comments: true
 ---

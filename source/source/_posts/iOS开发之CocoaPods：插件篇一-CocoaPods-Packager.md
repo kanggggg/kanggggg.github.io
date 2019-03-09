@@ -1,7 +1,8 @@
 ---
 title: iOS开发之CocoaPods：插件篇一 CocoaPods Packager
 tags:
-  - iOS Memo
+  - iOS
+  - CocoaPods
 categories:
   - iOS
   - CocoaPods
