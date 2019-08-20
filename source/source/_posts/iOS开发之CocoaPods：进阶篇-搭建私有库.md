@@ -192,14 +192,14 @@ $ pod repo push <私有repo> <库名>.podspec --sources='私有Specs repo仓库�
 ### pod验证过程中，发现修改的不生效
 
 我们在验证pod的时候，可能会频繁的修改，但是有的时候修改了却还是之前的样子，再或者我们总是拉不到最新的代码老是老版本的，我们可以试着去清理缓存
-  
+
 ```bash
 # 查看缓存
 $ pod cache list
-  
+
 # 清理全部缓存
 $ pod cache clean --all
-```   
+```
 
 ### 私有库依赖的其他三方library或者framework，不支持i386，导致 `pod lib lint`一直过不了，报 `ld: symbol(s) not found for architecture i386`
 

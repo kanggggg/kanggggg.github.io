@@ -27,7 +27,7 @@ CocoaPods是使用Ruby构建的，所以需要在本地准备好Ruby环境。不
 RubyGems在国内的访问速度极其感人，所以要进行更换，换成国内的镜像源。我使用的是 [Ruby China](https://gems.ruby-china.com/) 的源。
 
 1. 查看当前的源，默认情况下我们能看到当前的源是 `https://rubygems.org`
-   
+  
    ```bash
    $ gem sources -l
    ```
@@ -54,16 +54,22 @@ RubyGems在国内的访问速度极其感人，所以要进行更换，换成国
    
    # Mac OS X EI Capitan 以后系统请用下面这个安装命令
    $ sudo gem install -n /usr/local/bin cocoapods
+   
+   # 安装指定版本
+   $ sudo gem install -n /usr/local/bin cocoapods -v 1.7.4
+   
+   # 安装Beta版
+   $ sudo gem install -n /usr/local/bin cocoapods --pre
    ```
-   
+
    这里提一下，如何卸载呢？
-   
+
    ```bash
    $ sudo gem uninstall cocoapods
    ```
 
 2. 查看pod版本，验证是否安装成功
-   
+  
    ```bash
    $ pod --version
    ```
@@ -86,7 +92,7 @@ RubyGems在国内的访问速度极其感人，所以要进行更换，换成国
 ### 第一步 创建Podfile
 
 终端进入工程目录，新建Podfile，并编辑
-   
+
 ```bash
 $ cd ~/Desktop/CocoaPodsDemo/
 $ pod init # 在工程目录下创建Podfile文件
@@ -94,37 +100,37 @@ $ vi Podfile # 编辑
 ```
 
 ![](https://myblog-image.oss-cn-shanghai.aliyuncs.com/15481240442711.jpg)
-   
+
 编辑Podfile，初始文件内容如下图。这里直接用的vi编辑器，不知如何使用的，请点[Linux vi/vim](http://www.runoob.com/linux/linux-vim.html)
 
 ![](https://myblog-image.oss-cn-shanghai.aliyuncs.com/15481245106076.jpg)
-   
+
 ### 第二步 引入依赖
 
 ![](https://myblog-image.oss-cn-shanghai.aliyuncs.com/15481237443868.jpg)
-   
+
 AFNetworking GitHub的这段话告诉我们，我们要想导入，要编辑Podfile，指定要导入它。但是这时候我们还不能直接编辑，因为我们要确定一下是否真的支持导入AFNetworking。
-   
+
 ```bash
 $ pod search AFNetworking
 ```
 
 ![](https://myblog-image.oss-cn-shanghai.aliyuncs.com/15481263983217.jpg)
-   
+
 search的结果告诉我们，确实支持导入AFNetworking，当前的最新版是3.2.1，还有很多历史版本可以导入，AFNetworking里还有子库。现在可以来编辑Podfile：
 
 ![](https://myblog-image.oss-cn-shanghai.aliyuncs.com/15481249314614.jpg)
 
 编辑完成之后，执行下面命令完成导入：
-   
+
 ```bash
 $ pod install
 ```
-   
+
 导入完成之后，Xcode打开工程的时候不再使用 **CocoapodsDemo.xcodeeproj**，使用 **CocoaPods.xcworkspace** 打开工程，此时的工程目录如下图：
 
 ![](https://myblog-image.oss-cn-shanghai.aliyuncs.com/15481250903053.jpg)
-   
+
 ## Podfile
 
 [Podfile Syntax Reference](https://guides.cocoapods.org/syntax/podfile.html)
@@ -168,7 +174,7 @@ $ pod install --verbose --no-repo-update
 ```
 
 每次 `pod install` 的时候，都会去更新repo，但是速度又很慢，这条命令可以直接跳过更新
-   
+
 ### 目前工程导入了多个依赖，如何更新依赖，如何更新指定依赖？
 
 ```bash
