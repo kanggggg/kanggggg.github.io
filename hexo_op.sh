@@ -18,6 +18,12 @@ function hexo_deploy() {
     hexo d
 }
 
+function hexo_new_page() {
+    cd source
+    read -p "输入新文章名字：" PAGENAME
+    hexo new "$PAGENAME"
+}
+
 function git_push() {
     hexo_clean
     cd ..
@@ -31,7 +37,8 @@ echo "请选择要执行的操作:"
 echo "[1] clean"
 echo "[2] 启动本地server"
 echo "[3] deploy到GitHub Page"
-echo "[4] 推送Source"
+echo "[4] 创建新文章"
+echo "[5] 推送Source"
 
 read SELECTION
 
@@ -58,6 +65,10 @@ echo "执行中..."
 hexo_deploy
 
 elif [ $SELECTION = '4' ]; then
+
+hexo_new_page
+
+elif [ $SELECTION = '5' ]; then
 
 echo "执行中..."
 git_push
