@@ -1,0 +1,237 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>[Mac]打造Mac开发环境之Homebrew | Kanggggg</title>
+<link rel="shortcut icon" href="https://kanggggg.github.io/favicon.ico?v=1623306834610">
+<link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css" rel="stylesheet">
+<link rel="stylesheet" href="https://kanggggg.github.io/styles/main.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/go.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            Kanggggg
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+    </div>
+</nav>
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    [Mac]打造Mac开发环境之Homebrew
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2019-09-19 ·
+                    </time>
+                    
+                        <a href="https://kanggggg.github.io/tag/M9v2_wH3p/" class="post-tags">
+                            # Homebrew
+                        </a>
+                    
+                        <a href="https://kanggggg.github.io/tag/2JjSY6zwu/" class="post-tags">
+                            # Mac
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>使用Mac开发的时候，我们经常会在一些工具的安装说明里发现使用Homebrew安装，仅仅一句命令就把工具安装好了，简直🐂炸了，那么什么是Homebrew?</p>
+<!-- more -->
+<p><a href="https://brew.sh/index_zh-cn.html">Homebrew</a> ，macOS缺失的软件包管理器。实际上手之后，你会发现真的是不可获缺的，能方便地帮助我们完成包的安装、更新、卸载等等。</p>
+<h2 id="安装">安装</h2>
+<pre><code class="language-bash">$ /usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
+</code></pre>
+<h2 id="卸载">卸载</h2>
+<pre><code class="language-bash">$ /bin/bash -c &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall.sh)&quot;
+</code></pre>
+<h2 id="基本使用">基本使用</h2>
+<pre><code class="language-bash">$ brew update # 更新Homebrew
+$ brew -v # 查看Homebrew版本
+$ brew help [COMMAND] # 查看帮助
+
+# 包
+$ brew list # 查看已安装的包
+$ brew search &lt;packageName&gt; # 查询可用包
+$ brew install &lt;packageName&gt; # 安装包
+$ brew uninstall &lt;packageName&gt; # 卸载包
+$ brew upgrade &lt;packageName&gt; # 更新包
+$ brew info &lt;packageName&gt; # 查看包信息
+</code></pre>
+<p>以安装git为例：</p>
+<pre><code class="language-bash">$ brew search git # 查询
+$ brew install git # 安装
+$ brew uninstall git # 卸载
+$ brew upgrade git # 更新
+</code></pre>
+<h2 id="一些好用的插件">一些好用的插件</h2>
+<ul>
+<li>快速预览增强
+<ul>
+<li>代码高亮：<code>brew cask install qlcolorcode</code></li>
+<li>查看无文件扩展名的纯文本文件：<code>brew cask install qlstephen</code></li>
+<li>Markdown文件预览：<code>brew cask install qlmarkdown</code></li>
+<li>查看 JSON 文件：<code>brew cask install quicklook-json</code></li>
+<li>预览CSV: <code>brew cask install quicklook-csv</code></li>
+<li>查看图片的分辨率及大小：<code>brew cask install qlimagesize</code></li>
+<li>查看 ZIP 压缩包文件：<code>brew cask install betterzip</code></li>
+<li>预览WebP图片：<code>brew cask install webpquicklook</code></li>
+<li>预览视频：<code>brew cask install qlvideo</code></li>
+</ul>
+</li>
+<li>Android文件传输：<code>brew cask install android-file-transfer</code></li>
+</ul>
+<h2 id="注意">注意</h2>
+<ol>
+<li>
+<p>错误提示 <code>Error: The /usr/local directory is not writable</code></p>
+<pre><code class="language-bash">$ sudo chown -R $(whoami):admin /usr/local
+</code></pre>
+</li>
+</ol>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://kanggggg.github.io/post/mac-yi-nan-za-zheng-zhi-jie-jue-an-quan-yu-yin-si-mei-you-yun-xu-ren-he-lai-yuan-xuan-xiang/" class="post-title gt-a-link">
+                    [Mac]疑难杂症之安装App时提示已损坏解决办法
+                </a>
+            </div>
+        
+
+        
+            
+                <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: '26ec8fd67b5f0254c968',
+    clientSecret: 'be42fa4f587b34997566ffa2ec22f5d8e15b5d76',
+    repo: 'kanggggg.github.io',
+    owner: 'kanggggg',
+    admin: ['kanggggg'],
+    id: location.pathname,      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+            
+
+            
+        
+		
+		
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">Hello world</div>
+    <div class="social-container">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://kanggggg.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+    hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

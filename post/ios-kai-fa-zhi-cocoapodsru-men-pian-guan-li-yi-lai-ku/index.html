@@ -1,0 +1,350 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>[iOS]CocoaPods：入门篇 管理依赖库 | Kanggggg</title>
+<link rel="shortcut icon" href="https://kanggggg.github.io/favicon.ico?v=1623306834610">
+<link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css" rel="stylesheet">
+<link rel="stylesheet" href="https://kanggggg.github.io/styles/main.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/go.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            Kanggggg
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+    </div>
+</nav>
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    [iOS]CocoaPods：入门篇 管理依赖库
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2019-09-19 ·
+                    </time>
+                    
+                        <a href="https://kanggggg.github.io/tag/7PxhaBnP7/" class="post-tags">
+                            # iOS
+                        </a>
+                    
+                        <a href="https://kanggggg.github.io/tag/Lf8MZ-jj-9/" class="post-tags">
+                            # CocoaPods
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <blockquote>
+<p>WHAT IS COCOAPODS<br>
+CocoaPods is a dependency manager for Swift and Objective-C Cocoa projects. It has over 52 thousand libraries and is used in over 3 million apps. CocoaPods can help you scale your projects elegantly.</p>
+</blockquote>
+<p><a href="https://cocoapods.org/">CocoaPods</a> 官网上的这段话翻译一下就是：CocoaPods是Swift和Objective-C Cocoa项目的依赖管理器。他拥有超过52000个库，并在超过300万个应用程序中使用。CocoaPods可以帮助您优雅地扩展项目。</p>
+<!-- more -->
+<p>简单来说，就是可以帮助你方便地导入三方库，并导入库的依赖，免去了手动完成三方库导入配置。除了导入，你还可以利用CocoaPods搭建你自己的私有库体系。因为这些功能，CocoaPods基本上所有iOS开发者必用的。那么现在就从如何使用CocoaPods管理依赖库开始入门。</p>
+<h2 id="安装">安装</h2>
+<p>CocoaPods是使用Ruby构建的，所以需要在本地准备好Ruby环境。不过Mac默认已经有了Ruby环境，可以免去搭建Ruby环境了，但是还需要进行简单配置。打开终端（Terminal），我们开始操作。</p>
+<h3 id="第一步-更换rubygems源">第一步 更换RubyGems源</h3>
+<p>RubyGems在国内的访问速度极其感人，所以要进行更换，换成国内的镜像源。我使用的是 <a href="https://gems.ruby-china.com/">Ruby China</a> 的源。</p>
+<ol>
+<li>
+<p>查看当前的源，默认情况下我们能看到当前的源是 <code>https://rubygems.org</code></p>
+<pre><code class="language-bash">$ gem sources -l
+</code></pre>
+</li>
+<li>
+<p>移除当前源，并添加新的源</p>
+<pre><code class="language-bash"># Ruby China有https和http两种源，我一开始添加的是https的源会报SSL错误，改成了http就没问题
+$ gem sources --add http://gems.ruby-china.com/ --remove https://rubygems.org/
+</code></pre>
+</li>
+<li>
+<p>再次查看当前源，这个时候就变成了 <code>http://gems.ruby-china.com/</code></p>
+<pre><code class="language-bash">$ gem sources -l
+</code></pre>
+</li>
+</ol>
+<h3 id="第二步-安装cocoapods">第二步 安装CocoaPods</h3>
+<ol>
+<li>
+<p>安装，执行完下面的命令，等待一会就好</p>
+<pre><code class="language-bash">$ sudo gem install cocoapods
+
+# Mac OS X EI Capitan 以后系统请用下面这个安装命令
+$ sudo gem install -n /usr/local/bin cocoapods
+
+# 安装指定版本
+$ sudo gem install -n /usr/local/bin cocoapods -v 1.7.4
+
+# 安装Beta版
+$ sudo gem install -n /usr/local/bin cocoapods --pre
+</code></pre>
+<p>这里提一下，如何卸载呢？</p>
+<pre><code class="language-bash">$ sudo gem uninstall cocoapods
+</code></pre>
+</li>
+<li>
+<p>查看pod版本，验证是否安装成功</p>
+<pre><code class="language-bash">$ pod --version
+</code></pre>
+</li>
+<li>
+<p>在安装完成之后，进行设置。这一步的主要作用就是把官方的Specs repo (<a href="https://github.com/CocoaPods/Specs">The CocoaPods Master Repo</a>) 拉到本地，本地的存放目录是 <code>~/.cocoapods/repos/master</code></p>
+<pre><code class="language-bash">$ pod setup
+</code></pre>
+<p>何为Sepec repo? 以AFNetworking举例，AFNetworking在CocoaPods体系中，它是一个Pod，每一个Pod都有一个podspec文件，这个文件指定了Pod的版本、源码、公共头文件、依赖等等。那么Specs repo里就存有所有官方的podspec（官方是xxx.podspec.json，私有的是xxx.podspec）</p>
+<p><strong>友情提醒1，这一步很慢很慢，请耐心等待</strong><br>
+<strong>友情提醒2，如果你很没有耐心，你可以偷懒从其他安装好了CocoaPods的电脑上，拷贝一份repos到你的电脑上</strong></p>
+</li>
+</ol>
+<h2 id="cocoapods管理依赖库">CocoaPods管理依赖库</h2>
+<p>经过上面的折腾，CocoaPods已经安装成功了，我们要用来管理依赖库了。下面以CocoaPodsDemo工程导入AFNetworking进行演示。</p>
+<h3 id="第一步-创建podfile">第一步 创建Podfile</h3>
+<p>终端进入工程目录，新建Podfile，并编辑</p>
+<pre><code class="language-bash">$ cd ~/Desktop/CocoaPodsDemo/
+$ pod init # 在工程目录下创建Podfile文件
+$ vi Podfile # 编辑
+</code></pre>
+<figure data-type="image" tabindex="1"><img src="https://myblog-image.oss-cn-shanghai.aliyuncs.com/15481240442711.jpg" alt="" loading="lazy"></figure>
+<p>编辑Podfile，初始文件内容如下图。这里直接用的vi编辑器，不知如何使用的，请点<a href="http://www.runoob.com/linux/linux-vim.html">Linux vi/vim</a></p>
+<figure data-type="image" tabindex="2"><img src="https://myblog-image.oss-cn-shanghai.aliyuncs.com/15481245106076.jpg" alt="" loading="lazy"></figure>
+<h3 id="第二步-引入依赖">第二步 引入依赖</h3>
+<figure data-type="image" tabindex="3"><img src="https://myblog-image.oss-cn-shanghai.aliyuncs.com/15481237443868.jpg" alt="" loading="lazy"></figure>
+<p>AFNetworking GitHub的这段话告诉我们，我们要想导入，要编辑Podfile，指定要导入它。但是这时候我们还不能直接编辑，因为我们要确定一下是否真的支持导入AFNetworking。</p>
+<pre><code class="language-bash">$ pod search AFNetworking
+</code></pre>
+<figure data-type="image" tabindex="4"><img src="https://myblog-image.oss-cn-shanghai.aliyuncs.com/15481263983217.jpg" alt="" loading="lazy"></figure>
+<p>search的结果告诉我们，确实支持导入AFNetworking，当前的最新版是3.2.1，还有很多历史版本可以导入，AFNetworking里还有子库。现在可以来编辑Podfile：</p>
+<figure data-type="image" tabindex="5"><img src="https://myblog-image.oss-cn-shanghai.aliyuncs.com/15481249314614.jpg" alt="" loading="lazy"></figure>
+<p>编辑完成之后，执行下面命令完成导入：</p>
+<pre><code class="language-bash">$ pod install
+</code></pre>
+<p>导入完成之后，Xcode打开工程的时候不再使用 <strong>CocoapodsDemo.xcodeeproj</strong>，使用 <strong>CocoaPods.xcworkspace</strong> 打开工程，此时的工程目录如下图：</p>
+<figure data-type="image" tabindex="6"><img src="https://myblog-image.oss-cn-shanghai.aliyuncs.com/15481250903053.jpg" alt="" loading="lazy"></figure>
+<h2 id="podfile">Podfile</h2>
+<p><a href="https://guides.cocoapods.org/syntax/podfile.html">Podfile Syntax Reference</a></p>
+<blockquote>
+<p>The Podfile is a specification that describes the dependencies of the targets of one or more Xcode projects.</p>
+</blockquote>
+<p>Podfile是一个描述一个或多个Xcode项目的目标依赖项的规范，更直白的说就是指定项目要导入什么依赖，并指定一些导入设置。</p>
+<p>接下来简单分析一下CocoaPodsDemo这个工程里的Podfile：</p>
+<figure data-type="image" tabindex="7"><img src="https://myblog-image.oss-cn-shanghai.aliyuncs.com/15481258803893.jpg" alt="" loading="lazy"></figure>
+<p>这里指定工程所支持的最低系统版本</p>
+<figure data-type="image" tabindex="8"><img src="https://myblog-image.oss-cn-shanghai.aliyuncs.com/15481259105045.jpg" alt="" loading="lazy"></figure>
+<p>这里指定是否以动态库的形式编译Pods</p>
+<ul>
+<li><code># use_frameworks</code> 是以Static Library的形式编译</li>
+<li><code>use_frameworks</code> 默认是以Dynamic Framework的形式编译</li>
+</ul>
+<figure data-type="image" tabindex="9"><img src="https://myblog-image.oss-cn-shanghai.aliyuncs.com/15481260080281.jpg" alt="" loading="lazy"></figure>
+<p>这里指定要导入的依赖，这里的写法有很多种。</p>
+<pre><code class="language-ruby">pod 'AFNetworking'
+</code></pre>
+<p>例子中的这种写法，指定导入最新版的AFNetworking。我们也可以指定版本号：</p>
+<pre><code class="language-ruby">pod 'AFNetworking', '~&gt;3.2.1'
+</code></pre>
+<h2 id="更多pod使用以及脱坑">更多Pod使用以及脱坑</h2>
+<h3 id="pod-install-很慢怎么办">pod install 很慢怎么办?</h3>
+<pre><code class="language-bash">$ pod install --verbose --no-repo-update
+</code></pre>
+<p>每次 <code>pod install</code> 的时候，都会去更新repo，但是速度又很慢，这条命令可以直接跳过更新</p>
+<h3 id="目前工程导入了多个依赖如何更新依赖如何更新指定依赖">目前工程导入了多个依赖，如何更新依赖，如何更新指定依赖？</h3>
+<pre><code class="language-bash">$ pod update # 更新所有依赖
+$ pod update AFNetworking # 只更新AFNetworking
+</code></pre>
+<p><code>pod update</code> 也会更新repo，速度很慢，所以也可以这样跳过更新：</p>
+<pre><code class="language-bash">$ pod update AFNetworking --verbose --no-repo-update
+</code></pre>
+<h3 id="如何更新repo">如何更新repo?</h3>
+<pre><code class="language-bash">$ pod repo update
+</code></pre>
+<h3 id="pod报cocoapods-was-not-able-to-update-the-master-repo">pod报CocoaPods was not able to update the `master` repo</h3>
+<pre><code class="language-bash">#第一步 删除缓存
+$ sudo rm -fr ~/Library/Caches/CocoaPods/
+
+#第二步 清空本地Repos
+$ sudo rm -fr ~/.cocoapods/repos/master/
+
+#第三部 重新setup
+$ pod setup
+</code></pre>
+<h3 id="pod-search-报错-unable-to-find-a-pod-with-name-author-summary-or-descriptionmatching-json">pod search 报错 [!] Unable to find a pod with name, author, summary, or descriptionmatching <code>JSON</code></h3>
+<pre><code class="language-bash">#第一步 删除search_index.json
+$ rm ~/Library/Caches/CocoaPods/search_index.json
+
+#第二步 重新search
+$ pod search JSON
+</code></pre>
+<h3 id="安装pods失败提示ruby版本过低这需要去升级ruby这里采用rvm方式升级">安装Pods失败，提示Ruby版本过低，这需要去升级Ruby（这里采用RVM方式升级）</h3>
+<pre><code class="language-bash"># 第一步 安装RVM
+$ curl -L get.rvm.io | bash -s stable
+
+# 第二步 安装成功之后
+$ source ~/.bashrc
+$ source ~/.bash_profile
+$ rvm -v # 查看RVM版本
+
+# 第三步 升级Ruby
+# 查看现有Ruby版本
+$ ruby -v
+
+# 列出可安装的版本
+$ rvm list known
+
+# 安装最新版
+$ rvm install 2.3.0
+</code></pre>
+<h3 id="gem版本过老">gem版本过老</h3>
+<pre><code class="language-bash">#升级gem
+$ sudo gem update --system
+
+#查看gem版本
+$ gem --version
+</code></pre>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://kanggggg.github.io/post/mac-kai-fa-huan-jing-zhi-npm/" class="post-title gt-a-link">
+                    [Mac]开发环境之NPM
+                </a>
+            </div>
+        
+
+        
+            
+                <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: '26ec8fd67b5f0254c968',
+    clientSecret: 'be42fa4f587b34997566ffa2ec22f5d8e15b5d76',
+    repo: 'kanggggg.github.io',
+    owner: 'kanggggg',
+    admin: ['kanggggg'],
+    id: location.pathname,      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+            
+
+            
+        
+		
+		
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">Hello world</div>
+    <div class="social-container">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://kanggggg.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+    hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

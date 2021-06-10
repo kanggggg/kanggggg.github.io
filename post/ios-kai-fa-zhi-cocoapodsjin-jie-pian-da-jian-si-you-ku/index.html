@@ -1,0 +1,343 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>[iOS]CocoaPods：进阶篇 搭建私有库 | Kanggggg</title>
+<link rel="shortcut icon" href="https://kanggggg.github.io/favicon.ico?v=1623306834610">
+<link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css" rel="stylesheet">
+<link rel="stylesheet" href="https://kanggggg.github.io/styles/main.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/go.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            Kanggggg
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+    </div>
+</nav>
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    [iOS]CocoaPods：进阶篇 搭建私有库
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2019-09-19 ·
+                    </time>
+                    
+                        <a href="https://kanggggg.github.io/tag/7PxhaBnP7/" class="post-tags">
+                            # iOS
+                        </a>
+                    
+                        <a href="https://kanggggg.github.io/tag/Lf8MZ-jj-9/" class="post-tags">
+                            # CocoaPods
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>经过入门篇中的实操，我们现在已经安装好了CocoaPods，也知道怎么导入依赖库了， 现在开始向前进一步，利用CocoaPods搭建私有库。</p>
+<p>其实像AFNetworking这样的库，我们可以用CocoaPods导入是因为CocoaPods官方维护了一套库。那么其实我们也可以自己维护一套私有库，只供我们自己使用。</p>
+<!-- more -->
+<h2 id="创建pod项目工程">创建Pod项目工程</h2>
+<p>为什么Pod项目工程中的代码可以被导入？就像AFNetworking这个工程中的代码可以被我们导入，主要是因为项目中的podspec文件。</p>
+<blockquote>
+<p>A specification describes a version of Pod library. It includes details about where the source should be fetched from, what files to use, the build settings to apply, and other general metadata such as its name, version, and description.<br>
+规范描述了Pod库的一个版本。 它包括有关应从何处获取源，要使用的文件，要应用的构建设置以及其他常规元数据（如名称，版本和说明）的详细信息。</p>
+</blockquote>
+<p>创建Pod项目工程有两个方法：</p>
+<ol>
+<li>
+<p>手动创建podspec文件，这个方法更适合于把已有项目转为Pod项目</p>
+<pre><code class="language-bash">$ pod spec creare [库名]
+</code></pre>
+</li>
+<li>
+<p>自动创建Pod项目工程，这个方法更适于一个Pod项目从无到有</p>
+<pre><code class="language-bash">$ pod lib create [库名]
+</code></pre>
+</li>
+</ol>
+<p>方法2创建的工程，会包含Demo工程，我自己更倾向使用此方法来做Pod。</p>
+<h3 id="pod-lib-create">pod lib create</h3>
+<p><a href="https://guides.cocoapods.org/making/using-pod-lib-create.html">Using Pod Lib Create</a></p>
+<p><code>pod lib create</code> 是Pod提供的一个自动化创建私有pod工程的命令，实质上是下载一个Pod工程模板到本地，再做修改。命令在运行过程中，会弹出几个配置项进行配置，按需设置就行，很简单。</p>
+<pre><code class="language-bash">$ cd ~/Desktop
+$ pod lib create MyUtils
+</code></pre>
+<figure data-type="image" tabindex="1"><img src="https://myblog-image.oss-cn-shanghai.aliyuncs.com/15481388198669.jpg" alt="" loading="lazy"></figure>
+<p>项目目录如下：</p>
+<figure data-type="image" tabindex="2"><img src="https://myblog-image.oss-cn-shanghai.aliyuncs.com/15481388489415.jpg" alt="" loading="lazy"></figure>
+<ul>
+<li>Example：Demo工程目录</li>
+<li>MyUtils：库代码目录</li>
+<li>LICENSE：开源证书</li>
+<li>MyUtils.podspec：库的podspec</li>
+<li>README.md：Readme</li>
+</ul>
+<p>双击 <strong>MyUtils.xcworkspace</strong> 打开工程，工程结构如下：</p>
+<figure data-type="image" tabindex="3"><img src="https://myblog-image.oss-cn-shanghai.aliyuncs.com/15481391868339.jpg" alt="" loading="lazy"></figure>
+<p>接下来，我把这个工程放到了GitHub。</p>
+<h2 id="编写库代码">编写库代码</h2>
+<p>我这里就写一个测试类 <code>MUAppInfo</code>，写完之后再 <code>pod install</code> 进行开发模式下的导入</p>
+<p><strong>MUAppInfo.h</strong></p>
+<figure data-type="image" tabindex="4"><img src="https://myblog-image.oss-cn-shanghai.aliyuncs.com/15481397736154.jpg" alt="" loading="lazy"></figure>
+<p><strong>MUAppInfo.m</strong></p>
+<figure data-type="image" tabindex="5"><img src="https://myblog-image.oss-cn-shanghai.aliyuncs.com/15481397856966.jpg" alt="" loading="lazy"></figure>
+<p><strong>MUViewController.h</strong></p>
+<figure data-type="image" tabindex="6"><img src="https://myblog-image.oss-cn-shanghai.aliyuncs.com/15481399293405.jpg" alt="" loading="lazy"></figure>
+<h2 id="编辑podspec">编辑podspec</h2>
+<ul>
+<li><a href="https://guides.cocoapods.org/syntax/podspec.html#specification">Podspec Syntax Reference</a></li>
+<li><a href="https://github.com/AFNetworking/AFNetworking/blob/master/AFNetworking.podspec">AFNetworking.podspec</a></li>
+<li><a href="http://blog.csdn.net/wadefelix/article/details/6384317">如何选择开源许可证？</a></li>
+</ul>
+<p>podspec是这个pod的配置文件，当我们引用这个pod到工程的时候，就会按这个文件里的配置项进行配置。这边顺便提一下，podspec是Ruby文件，我们可以用 <a href="https://code.visualstudio.com/">Visual Studio Code</a> 再装上Ruby插件来编辑，真的很好用。</p>
+<p>我对这个测试Pod的podspec做了简单编辑，具体配置项这里不细说了，可以查看<a href="https://guides.cocoapods.org/syntax/podspec.html#specification">Podspec Syntax Reference</a>：</p>
+<pre><code class="language-ruby">Pod::Spec.new do |s|
+  s.name             = 'MyUtils'
+  s.version          = '0.1.0'
+  s.summary          = 'A short description of MyUtils.'
+
+  s.homepage         = 'https://github.com/kanggggg/MyUtils'
+  s.license          = { :type =&gt; 'MIT', :file =&gt; 'LICENSE' }
+  s.author           = { 'Kang' =&gt; 'xxxxx@gmail.com' }
+  s.source           = { :git =&gt; 'https://github.com/kanggggg/MyUtils.git', :tag =&gt; s.version.to_s }
+
+  s.ios.deployment_target = '8.0'
+  s.source_files = 'MyUtils/Classes/**/*'
+end
+</code></pre>
+<h3 id="验证pod是否可用">验证Pod是否可用</h3>
+<p>podspec写好了，接下来需要验证是否正确，这里有两个方法：</p>
+<pre><code class="language-ruby"># pod spec lint 会去校验 s.source 的配置，也就是会去拉代码验证
+$ pod spec lint # 不指定，默认当前文件夹内的podspec
+$ pod spec lint MyUtils.podspec # 指定podspec
+
+# pod lib lint 忽略 s.source 的配置，本地代码验证
+$ pod lib lint # 不指定，默认当前文件夹内的podspec
+$ pod lib lint MyUtils.podspec # 指定podspec
+</code></pre>
+<p>当看到终端打印 <code>passed validation.</code> ，就说明验证通过，不通过就根据提示进行修改。</p>
+<p>当验证通过之后，打上tag，推送到远程仓库</p>
+<pre><code>$ git tag 0.1.0
+$ git push origin --tags # 推送到远程
+</code></pre>
+<h2 id="创建私有specs-repo">创建私有Specs repo</h2>
+<p>我们先打 <code>./cocoapods/repos</code> 文件夹，会看到里面有个master文件夹，该目录即存放着官方的spec。我们自己添加的spec repo也会放在 <code>./cocoapods/repos</code> 文件夹下。</p>
+<ol>
+<li>
+<p>先创建一个git仓库，<code>https://github.com/kanggggg/MySpecs</code></p>
+</li>
+<li>
+<p>添加到本地 <code>repos</code> 目录</p>
+<pre><code class="language-bash">$ pod repo add MySpecs https://github.com/kanggggg/MySpecs.git
+</code></pre>
+</li>
+</ol>
+<h3 id="把私有pod添加到私有-specs-repo-中">把私有Pod添加到私有 Specs repo 中</h3>
+<pre><code class="language-bash">$ pod repo push MySpecs MyUtils.podspec
+</code></pre>
+<p>添加成功之后，就能看到 <code>~/.cocoapods/repos/MySpecs</code> 多了 <code>MyUtils</code>，<code>MySpecs</code> 的远程仓库同步更新了。</p>
+<h3 id="测试工程导入私有库">测试工程导入私有库</h3>
+<p>这里拿出上面的 CocoaPodsDemo 这个工程进行测试，编辑Podfile ，编辑完成之后执行install</p>
+<figure data-type="image" tabindex="7"><img src="https://myblog-image.oss-cn-shanghai.aliyuncs.com/15481447599235.jpg" alt="" loading="lazy"></figure>
+<p>这里的重点在要指定source：</p>
+<pre><code class="language-ruby"># 官方
+source 'https://github.com/CocoaPods/Specs.git'
+
+# 私有
+source 'https://github.com/kanggggg/MySpecs.git'
+</code></pre>
+<h2 id="私有库使用问答">私有库使用问答</h2>
+<h3 id="私有库依赖私有库时验证不过">私有库依赖私有库时验证不过</h3>
+<p>这个时候需要指定sources</p>
+<pre><code class="language-bash">$ pod spec lint &lt;库名&gt;.podspec --sources='私有Specs repo仓库地址,https://github.com/CocoaPods/Specs.git'
+
+# 比如
+# pod spec lint MyUtils.podspec --sources='https://github.com/kanggggg/MySpecs.git,https://github.com/CocoaPods/Specs.git'
+</code></pre>
+<h3 id="私有库依赖私有库推送到私有specs-repo">私有库依赖私有库，推送到私有Specs repo</h3>
+<pre><code class="language-bash">$ pod repo push &lt;私有repo&gt; &lt;库名&gt;.podspec --sources='私有Specs repo仓库地址,https://github.com/CocoaPods/Specs.git'
+
+# 比如
+# pod repo push MySpecs MyUtils.podspec 
+</code></pre>
+<h3 id="pod验证过程中发现修改的不生效">pod验证过程中，发现修改的不生效</h3>
+<p>我们在验证pod的时候，可能会频繁的修改，但是有的时候修改了却还是之前的样子，再或者我们总是拉不到最新的代码老是老版本的，我们可以试着去清理缓存</p>
+<pre><code class="language-bash"># 查看缓存
+$ pod cache list
+
+# 清理全部缓存
+$ pod cache clean --all
+</code></pre>
+<h3 id="私有库依赖的其他三方library或者framework不支持i386导致-pod-lib-lint一直过不了报-ld-symbols-not-found-for-architecture-i386">私有库依赖的其他三方library或者framework，不支持i386，导致 <code>pod lib lint</code>一直过不了，报 <code>ld: symbol(s) not found for architecture i386</code></h3>
+<p>这个问题真的是很令人头疼，折腾了两天，也看了网上的一些解决办法，包括StackOverFlow，有成功的也有不成功的，成功的我也觉得不是最佳。我就去翻CocoaPods GitHub Issues，终于让我翻到了。</p>
+<ul>
+<li><a href="https://github.com/CocoaPods/CocoaPods/issues/8129">Undefined symbols for architecture i386 even though it's omitted from VALID_ARCHS #8129</a></li>
+<li><a href="https://github.com/CocoaPods/CocoaPods/pull/8159">Fix linting when armv7 is included but i386 isn't #8159</a></li>
+</ul>
+<p>8129这个问题在 CocoaPods 1.6.0.beta.2 版本得到了修复</p>
+<ol>
+<li>
+<p>先升级到CocoaPods Beta版</p>
+<pre><code class="language-bash">$ sudo gem install -n /usr/local/bin cocoapods --pre
+</code></pre>
+</li>
+<li>
+<p>编辑podspec，加入 pod_target_xcconfig</p>
+<pre><code class="language-ruby">s.pod_target_xcconfig = { 'VALID_ARCHS' =&gt; 'arm64 armv7 x86_64' }
+</code></pre>
+<p>什么是 <a href="https://guides.cocoapods.org/syntax/podspec.html#pod_target_xcconfig">pod_target_xcconfig</a> ?</p>
+<blockquote>
+<p>Any flag to add to the final private pod target xcconfig file.<br>
+要添加到最终私有pod目标xcconfig文件的任何标志。</p>
+</blockquote>
+</li>
+</ol>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://kanggggg.github.io/post/ios-kai-fa-zhi-cocoapodsru-men-pian-guan-li-yi-lai-ku/" class="post-title gt-a-link">
+                    [iOS]CocoaPods：入门篇 管理依赖库
+                </a>
+            </div>
+        
+
+        
+            
+                <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: '26ec8fd67b5f0254c968',
+    clientSecret: 'be42fa4f587b34997566ffa2ec22f5d8e15b5d76',
+    repo: 'kanggggg.github.io',
+    owner: 'kanggggg',
+    admin: ['kanggggg'],
+    id: location.pathname,      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+            
+
+            
+        
+		
+		
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">Hello world</div>
+    <div class="social-container">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://kanggggg.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+    hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

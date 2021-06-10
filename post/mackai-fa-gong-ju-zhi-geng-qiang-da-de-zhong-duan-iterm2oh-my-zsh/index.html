@@ -1,0 +1,296 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>[Mac]开发工具之更强大的终端 iTerm2+Oh My Zsh | Kanggggg</title>
+<link rel="shortcut icon" href="https://kanggggg.github.io/favicon.ico?v=1623306834610">
+<link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css" rel="stylesheet">
+<link rel="stylesheet" href="https://kanggggg.github.io/styles/main.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/go.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            Kanggggg
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+    </div>
+</nav>
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    [Mac]开发工具之更强大的终端 iTerm2+Oh My Zsh
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2019-09-19 ·
+                    </time>
+                    
+                        <a href="https://kanggggg.github.io/tag/8_ndHYBmO/" class="post-tags">
+                            # Terminal
+                        </a>
+                    
+                        <a href="https://kanggggg.github.io/tag/2JjSY6zwu/" class="post-tags">
+                            # Mac
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>在开发过程中，难免要用到终端运行命令的情况，一般Mac自带能满足需求了，但是俗话说工欲善其事必先利其器，作为一个开发，没有理由拒绝把终端变得更强。iTerm2 搭配 Oh My Zsh 或许就是答案。</p>
+<!-- more -->
+<h2 id="iterm2">iTerm2</h2>
+<p><a href="https://www.iterm2.com/index.html">iTerm2</a></p>
+<blockquote>
+<p>iTerm2 is a replacement for Terminal and the successor to iTerm. It works on Macs with macOS 10.12 or newer. iTerm2 brings the terminal into the modern age with features you never knew you always wanted.</p>
+</blockquote>
+<p>安装的过程就不说了，下载下来，移动到Applications目录就好</p>
+<p>在安装完成之后，你的终端就可以使用zsh了，Mac终端默认是使用bash，所以需要切换到zsh</p>
+<pre><code class="language-bash">$ chsh -s /bin/zsh
+</code></pre>
+<h3 id="关于zsh和bash">关于zsh和bash</h3>
+<p>zsh和bash都是一种shell，那么何为shell？</p>
+<p><a href="http://cn.linux.vbird.org/linux_basic/0320bash.php#bash">鸟哥的Linux私房菜 第十一章、认识与学习 BASH</a></p>
+<p>总结一下就是shell是壳，是用户与系统内核沟通的命令行解析器，再通俗点说其实也是一个应用，只是它是文字形式的，要做什么必须输入文字命令。</p>
+<p>那么Mac支持有几种shell呢？</p>
+<pre><code class="language-bash"># 查看支持的shell
+$ cat /etc/shells
+
+# 切换shell
+$ chsh -s /bin/zsh
+
+# 查看当前的shell
+$ echo $SHELL
+</code></pre>
+<p>常见shell如下：</p>
+<ul>
+<li><code>/bin/sh</code>：Bourne shell，被 <code>bash</code> 取代</li>
+<li><code>/bin/bash</code>：Bourne-Again Shell，用来替代Bourne shell，多数Linux以及MacOS的默认shell</li>
+<li><code>/bin/ksh</code>：<a href="http://www.kornshell.com/info/">Korn shell</a>，兼容bash</li>
+<li><code>/bin/csh</code>：语法类似C语言</li>
+<li><code>/bin/tcsh</code>：csh增强版</li>
+<li><code>/bin/zsh</code>：基于ksh，功能更强大的shell，很多其他shell的特点都被引入zsh</li>
+</ul>
+<h2 id="oh-my-zsh">Oh My Zsh</h2>
+<p><a href="https://ohmyz.sh">Oh My Zsh</a><br>
+<a href="https://github.com/robbyrussell/oh-my-zsh/">Oh My Zsh GitHub</a></p>
+<blockquote>
+<p>Oh My Zsh is a delightful, open source, community-driven framework for managing your Zsh configuration. It comes bundled with thousands of helpful functions, helpers, plugins, themes, and a few things that make you shout...</p>
+<p>“Oh My ZSH!”</p>
+</blockquote>
+<p>一句话，Oh My Zsh 是对zsh的功能扩展</p>
+<h3 id="安装">安装</h3>
+<ol>
+<li>
+<p>自动安装</p>
+<pre><code class="language-bash">sh -c &quot;$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&quot;
+</code></pre>
+</li>
+<li>
+<p>手动安装</p>
+<pre><code class="language-bash">git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
+</code></pre>
+</li>
+</ol>
+<p>其他命令：</p>
+<pre><code class="language-bash">omz update # 升级oh-my-zsh
+</code></pre>
+<h3 id="配置">配置</h3>
+<p>oh-my-zsh的配置文件是 <code>~/.zshrc</code>，每次变动了该文件，都需要 <code>source ~/.zshrc</code> 使配置生效</p>
+<h3 id="插件">插件</h3>
+<p>自带插件目录 <code>~/.oh-my-zsh/plugins</code>，也就是 <code>$ZSH/plugins</code><br>
+三方插件目录 <code>~/.oh-my-zsh/custom/plugins</code>，也就是 <code>$ZSH_CUSTOM/plugins</code></p>
+<h4 id="zsh-autosuggestions-命令补全">zsh-autosuggestions 命令补全</h4>
+<p><a href="https://github.com/zsh-users/zsh-autosuggestions">zsh-autosuggestions</a></p>
+<ol>
+<li>下载到三方插件目录，<code>$ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions</code></li>
+<li>编辑 <code>~/.zshrc</code> ，加入到 <code>plugins</code> ，<code>plugins=(... zsh-autosuggestions)</code></li>
+<li>使配置生效，<code>source ~/.zshrc</code></li>
+</ol>
+<h4 id="zsh-syntax-highlighting-语法高亮">zsh-syntax-highlighting 语法高亮</h4>
+<p><a href="https://github.com/zsh-users/zsh-syntax-highlighting">zsh-syntax-highlighting</a></p>
+<ol>
+<li>下载到三方插件目录，<code>$ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting</code></li>
+<li>编辑 <code>~/.zshrc</code>，加入到 <code>plugins</code>，<code>plugins=(... zsh-syntax-highlighting)</code></li>
+<li>在 <code>~/.zshrc</code> 的末尾加上 <code>source $ZSH_CUSTOM/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh</code></li>
+<li>使配置生效，<code>source ~/.zshrc</code></li>
+</ol>
+<h3 id="主题">主题</h3>
+<p><a href="https://github.com/robbyrussell/oh-my-zsh/wiki/themes">主题列表</a></p>
+<p>自带主题目录 <code>~/.oh-my-zsh/themes</code>，也就是 <code>$ZSH/themes</code><br>
+三方主题目录 <code>~/.oh-my-zsh/custom/themes</code>，也就是 <code>$ZSH_CUSTOM/themes</code></p>
+<p>设置主题的方法（以设置ys主题为例）：</p>
+<ol>
+<li>编辑 <code>~/.zshrc</code>，设置 <code>ZSH_THEME=&quot;ys&quot;</code></li>
+<li>使配置生效，<code>source ~/.zshrc</code></li>
+</ol>
+<h4 id="agnoster">agnoster</h4>
+<p>这个主题应该是网上比较常提到的主题，虽然也是自带的，不过配置这个主题相对麻烦些</p>
+<ol>
+<li>
+<p>安装Poweline</p>
+<pre><code class="language-bash">$ sudo easy_install pip # 安装pip，若已安装可忽略
+$ pip install powerline-status --user
+</code></pre>
+</li>
+<li>
+<p>安装PowerFonts</p>
+<pre><code class="language-bash">$ mkdir PowerFonts
+$ cd PowerFonts
+$ git clone https://github.com/powerline/fonts.git --depth=1
+$ cd fonts
+$ ./install.sh
+$ cd ..
+$ rm -rf fonts
+</code></pre>
+</li>
+<li>
+<p>修改iTerm2字体，<code>iTerm2 -&gt; Preferences -&gt; Profiles -&gt; Text</code> ，把字体设成 <code>Meslo LG</code>，比如 <code>Meslo LG S for Powerline</code></p>
+</li>
+</ol>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://kanggggg.github.io/post/mac-yi-nan-za-zheng-zhi-she-zhi-deng-lu-jie-mian-wen-zi-wei-zhong-wen/" class="post-title gt-a-link">
+                    [Mac]疑难杂症之设置登录界面文字为中文
+                </a>
+            </div>
+        
+
+        
+            
+                <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: '26ec8fd67b5f0254c968',
+    clientSecret: 'be42fa4f587b34997566ffa2ec22f5d8e15b5d76',
+    repo: 'kanggggg.github.io',
+    owner: 'kanggggg',
+    admin: ['kanggggg'],
+    id: location.pathname,      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+            
+
+            
+        
+		
+		
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">Hello world</div>
+    <div class="social-container">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://kanggggg.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+    hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>
